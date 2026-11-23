@@ -1,0 +1,16 @@
+{
+  "name": "@routelab/publisher",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "build": "tsc --noEmit -p .",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "@routelab/shared": "*",
+    "firebase-admin": "^13.0.0",
+    "tsx": "^4.19.0"
+  }
+}

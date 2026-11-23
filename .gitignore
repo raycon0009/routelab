@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env*
+!.env.example
+*-sa.json
+*adminsdk*.json
+service-account*.json
+.firebase/
+*.log
+*.tsbuildinfo
+coverage/
+.vite/
