@@ -15,7 +15,10 @@ export interface FirebaseBundle {
  * Initialises Firebase. App Check must be initialised BEFORE getAI is used.
  * Without a reCAPTCHA v3 site key, dev builds enable the debug token and the UI should show a warning.
  */
+let cached: FirebaseBundle | null = null;
+
 export function initFirebase(opts: { recaptchaSiteKey?: string; dev: boolean }): FirebaseBundle {
+  if (cached) return cached;
   const existing = getApps()[0];
   const app = existing ?? initializeApp(firebaseConfig);
   let appCheck: AppCheck | null = null;
@@ -39,7 +42,8 @@ export function initFirebase(opts: { recaptchaSiteKey?: string; dev: boolean }):
       appCheckMode = 'debug';
     }
   }
-  return { app, auth: getAuth(app), appCheck, appCheckMode };
+  cached = { app, auth: getAuth(app), appCheck, appCheckMode };
+  return cached;
 }
 
 export async function ensureSignedIn(auth: Auth): Promise<User> {
