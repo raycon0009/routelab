@@ -139,7 +139,7 @@ export async function runEvaluation(cfg: RunConfig): Promise<RunOutput> {
   async function callOnce(c: TestCase, route: Route): Promise<CaseResult> {
     const timeoutMs = route === 'device' ? deviceTimeoutMs : cloudTimeoutMs;
     const t0 = Date.now();
-    const base = { caseId: c.id, route, inputChars: c.input.length };
+    const base = { caseId: c.id, route, inputChars: c.input.length, input: c.input };
     let resp: ModelResponse;
     try {
       resp = await callWithTimeout(

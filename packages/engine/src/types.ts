@@ -80,6 +80,7 @@ export interface CaseResult {
   caseId: string;
   route: Route;
   inputChars: number;
+  input?: string;
   outcome: Outcome;
   output?: string;
   inferenceSource?: string;

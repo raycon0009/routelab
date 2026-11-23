@@ -1,0 +1,715 @@
+{
+ "id": "moderation.civil",
+ "title": "Comment moderation (Civil Comments sample)",
+ "contentWarning": "Contains real internet comments that include insults, profanity and hateful language. Shown for evaluation only.",
+ "source": "https://huggingface.co/datasets/google/civil_comments (test split via datasets-server)",
+ "license": "CC0-1.0 (per the Hugging Face dataset card, checked 24 Nov 2026)",
+ "labels": [
+  "allow",
+  "remove",
+  "escalate"
+ ],
+ "labelRule": "toxicity >= 0.8 -> remove; 0.4..0.6 -> escalate; 0.0 -> allow",
+ "cases": [
+  {
+   "id": "civil-6",
+   "sourceRow": 6,
+   "input": "Our oils read;  President IS taking different tactics to deal with a corrupt malignant, hipoctitical , one way press!\nIdiots forget what witnessed them doing during the last election process.",
+   "expected": "remove",
+   "toxicity": 0.8518518805503845
+  },
+  {
+   "id": "civil-35",
+   "sourceRow": 35,
+   "input": "The profoundly stupid have spoken.",
+   "expected": "remove",
+   "toxicity": 0.8793103694915771
+  },
+  {
+   "id": "civil-36",
+   "sourceRow": 36,
+   "input": "The ignorance and bigotry comes from your post!",
+   "expected": "remove",
+   "toxicity": 0.800000011920929
+  },
+  {
+   "id": "civil-51",
+   "sourceRow": 51,
+   "input": "Right on the money Gary Crum. And if they hide behind the anonymity of masks and the mob, they're cowards to boot.",
+   "expected": "remove",
+   "toxicity": 0.8333333134651184
+  },
+  {
+   "id": "civil-83",
+   "sourceRow": 83,
+   "input": "I can't believe this country was so stupid.. -totally dumbstruck- you get what you get and don't throw a fit!",
+   "expected": "remove",
+   "toxicity": 0.890625
+  },
+  {
+   "id": "civil-1627",
+   "sourceRow": 1627,
+   "input": "Just kill the rail.",
+   "expected": "remove",
+   "toxicity": 0.8999999761581421
+  },
+  {
+   "id": "civil-3077",
+   "sourceRow": 3077,
+   "input": "to become instead a truly non-partisan body of sober second thought.,, oh ibbitson you idiot, it is still a party hack club ,",
+   "expected": "remove",
+   "toxicity": 0.9189189076423645
+  },
+  {
+   "id": "civil-4615",
+   "sourceRow": 4615,
+   "input": "No, Trudeau is just plain dumb. Don;t play it up you know this is true.",
+   "expected": "remove",
+   "toxicity": 0.9285714030265808
+  },
+  {
+   "id": "civil-4651",
+   "sourceRow": 4651,
+   "input": "U R dumb. Butthead",
+   "expected": "remove",
+   "toxicity": 0.957446813583374
+  },
+  {
+   "id": "civil-4682",
+   "sourceRow": 4682,
+   "input": "most women have to put up with this garbage in one form or another. there's only so many times you can brush this off. after a while, it gets seriously annoying.",
+   "expected": "remove",
+   "toxicity": 0.800000011920929
+  },
+  {
+   "id": "civil-6181",
+   "sourceRow": 6181,
+   "input": "\"I am the Night Ride.....oh shite!\"\n~~~",
+   "expected": "remove",
+   "toxicity": 0.8333333134651184
+  },
+  {
+   "id": "civil-7664",
+   "sourceRow": 7664,
+   "input": "\"White nationalists want an all white country\"\nAnd they aren't going to get it, this country has never been all white, and never will be, the whole concept is stupid, but, whatever.",
+   "expected": "remove",
+   "toxicity": 0.8374999761581421
+  },
+  {
+   "id": "civil-7701",
+   "sourceRow": 7701,
+   "input": "What a clown. Two weeks in and he's already looking dumb. \n-\nMy bet is he doesn't make it through a full term, he'll find a way to get arrested and impeached.",
+   "expected": "remove",
+   "toxicity": 0.8166666626930237
+  },
+  {
+   "id": "civil-7709",
+   "sourceRow": 7709,
+   "input": "Whatever happened to libel and slander laws?  Dembowski should have been sued multiple times by now.  She is proven liar.",
+   "expected": "remove",
+   "toxicity": 0.800000011920929
+  },
+  {
+   "id": "civil-7745",
+   "sourceRow": 7745,
+   "input": "White privilege! Critical race theory! It's all white people's fault!",
+   "expected": "remove",
+   "toxicity": 0.8309859037399292
+  },
+  {
+   "id": "civil-10744",
+   "sourceRow": 10744,
+   "input": "He does have a beautiful white robe with a pointy cap, accessorized with a beautiful armband with a swastika on it. And let's not forget that manifesto in his hand signed by Hitler lauding the killing of Jews, Blacks, and all other non-whites who do not support the supremacy of the Aryan race.",
+   "expected": "remove",
+   "toxicity": 0.800000011920929
+  },
+  {
+   "id": "civil-10769",
+   "sourceRow": 10769,
+   "input": "That should show the fags a thing or two",
+   "expected": "remove",
+   "toxicity": 0.9093959927558899
+  },
+  {
+   "id": "civil-12317",
+   "sourceRow": 12317,
+   "input": "On James Clapper:\n\nJames Clapper resigns as US director of national intelligence - The Guardian, 17 Nov 2016\n\n\"In March 2013, months before Snowden provided the Guardian and the Washington Post with voluminous NSA data documenting sweeping domestic and international communications dragnets, Clapper had a public colloquy with Senator Ron Wyden, an Oregon Democrat on the intelligence committee.\n\nWyden asked Clapper: “Does the NSA collect any type of data at all on millions, or hundreds of millions, of Americans?” Clapper replied, untruthfully: “No sir,” rubbing his head. “Not wittingly.” \"\n\nClapper is famous for having lied under oath to Congress, and the American people, concerning the NSA's surveillance programs. He is also well known for having fired Trump aide Michael Flynn from his directorship at the Defense Intelligence Committee.\n\nClapper is a proven liar, and a political animal through and through.",
+   "expected": "remove",
+   "toxicity": 0.8333333134651184
+  },
+  {
+   "id": "civil-13818",
+   "sourceRow": 13818,
+   "input": "I agree. Mindless idiots.",
+   "expected": "remove",
+   "toxicity": 0.9245283007621765
+  },
+  {
+   "id": "civil-13872",
+   "sourceRow": 13872,
+   "input": "That's just what Assange of WikiLeaks announced to the entire world that the Podesta password was.  \n\nIn an interview, apparently.  With some guy named Hannity.  \n\nMight even be true.  Somebody was certainly stupid with his e-mail.",
+   "expected": "remove",
+   "toxicity": 0.800000011920929
+  },
+  {
+   "id": "civil-13878",
+   "sourceRow": 13878,
+   "input": "You don't pay attention to anything, Chuckie beyond what's in front of your nose.\nBut that's OK. We can manage without simpletons like you just fine.",
+   "expected": "remove",
+   "toxicity": 1
+  },
+  {
+   "id": "civil-15350",
+   "sourceRow": 15350,
+   "input": "you lunatics of left wing bs are pathetic with your so called arguments! ,",
+   "expected": "remove",
+   "toxicity": 0.8837209343910217
+  },
+  {
+   "id": "civil-15359",
+   "sourceRow": 15359,
+   "input": "oh ignorant fool, many small businesses may not be able to just raise prices cause of competition thus having to slash jobs!! ,",
+   "expected": "remove",
+   "toxicity": 0.9268292784690857
+  },
+  {
+   "id": "civil-16842",
+   "sourceRow": 16842,
+   "input": "Nobody is worried about the Trump character. Cut the crap, dummy.  Except for  insane leftists lunatics like you and your friends - political hacks who are pretending to be journalists.",
+   "expected": "remove",
+   "toxicity": 0.8166666626930237
+  },
+  {
+   "id": "civil-16879",
+   "sourceRow": 16879,
+   "input": "Why should Trump receive a \"pat on the back\" for enforcing equal protection for the LGBT community?  Trump's too far from the eight ball to receive any pat on the back.  A swift kick in the butt perhaps.",
+   "expected": "remove",
+   "toxicity": 0.8125
+  },
+  {
+   "id": "civil-16920",
+   "sourceRow": 16920,
+   "input": "The tRumpity Dumpity anti-christ nows not how to repent.  That's why he's the anti-christ.",
+   "expected": "remove",
+   "toxicity": 0.8333333134651184
+  },
+  {
+   "id": "civil-18415",
+   "sourceRow": 18415,
+   "input": "To start...ADN should stop (or at least significantly reduce) reprinting NYT/WAPO articles. For the crazies who are interested in reading that trash (along with the National Enquirer) they can go to the original source.",
+   "expected": "remove",
+   "toxicity": 1
+  },
+  {
+   "id": "civil-21525",
+   "sourceRow": 21525,
+   "input": "Uh huh. Then why don't you behave that way in the ADN comments section? \nYour alleged \"c'est la vie\" attitude is nowhere to be found on this website. Where's your vaunted \"personal integrity\" here?  You sound like Trump at his ridiculous and incredibly embarrassing - for him and his cabinet - \"Tell Me How Much You Worship Me\" fake cabinet meeting.",
+   "expected": "remove",
+   "toxicity": 1
+  },
+  {
+   "id": "civil-22973",
+   "sourceRow": 22973,
+   "input": "I wish Ige could put a muzzle on Chin and stop his 'tilting at windmills' on the taxpayers dime. It doesn't take a plethora of AG's to challenge Trump. We have far too many urgent problems in Hawaii, like our third world highways embarrassment, the homeless that I need to step around on sidewalks literally a few blocks away from the Capital and City Hall. Meanwhile, we can't even get competent professionals who can file timely applications for million$$ in grants for the needy. Hawaii is fast becoming a laughing stock and Chin is the most visible political clown.",
+   "expected": "remove",
+   "toxicity": 0.8333333134651184
+  },
+  {
+   "id": "civil-22978",
+   "sourceRow": 22978,
+   "input": "maybe somebody too stupid to make it as a petty criminal.",
+   "expected": "remove",
+   "toxicity": 0.8166666626930237
+  },
+  {
+   "id": "civil-26099",
+   "sourceRow": 26099,
+   "input": "It looks like it would be hard to tell one person's balls from another.",
+   "expected": "remove",
+   "toxicity": 0.8999999761581421
+  },
+  {
+   "id": "civil-26113",
+   "sourceRow": 26113,
+   "input": "Your jealousy and mediocrity shines like the sun.  You go buddy. Life will work out for you like a gem.",
+   "expected": "remove",
+   "toxicity": 0.8333333134651184
+  },
+  {
+   "id": "civil-29115",
+   "sourceRow": 29115,
+   "input": "Kill yourself communist",
+   "expected": "remove",
+   "toxicity": 0.9869067072868347
+  },
+  {
+   "id": "civil-29125",
+   "sourceRow": 29125,
+   "input": "I am  not jealous of the wealthy, I am against against  p**** grabbin', lying, oligarchs like the Donald and his lovefest with Putin.  Since when did the Republicans embrace communism?  Since  the Donald, I think.  aloha",
+   "expected": "remove",
+   "toxicity": 0.8999999761581421
+  },
+  {
+   "id": "civil-30681",
+   "sourceRow": 30681,
+   "input": "You're about as dumb as they come.",
+   "expected": "remove",
+   "toxicity": 0.9230769276618958
+  },
+  {
+   "id": "civil-32160",
+   "sourceRow": 32160,
+   "input": "'\nif by successful business people you mean traitors and con men.",
+   "expected": "remove",
+   "toxicity": 0.8333333134651184
+  },
+  {
+   "id": "civil-32164",
+   "sourceRow": 32164,
+   "input": "You can't eat money and if Secretary Clinton is so guilty....how come NOTHING the GOP witch hunts throw at her seems to stick?  You still butt hurt over Parnell being shown the door you'll sell your grandmother for a few bucks.",
+   "expected": "remove",
+   "toxicity": 0.8999999761581421
+  },
+  {
+   "id": "civil-32167",
+   "sourceRow": 32167,
+   "input": "How about you kiss my ass? I stand by my earlier comment.",
+   "expected": "remove",
+   "toxicity": 0.9714285731315613
+  },
+  {
+   "id": "civil-32188",
+   "sourceRow": 32188,
+   "input": "This guy is an anal low life, the boys in prison will take care of him.\nHe'll be a prisoners little bitch and sodimized the first night he's there.\nPassed around to all for fun gang banging his butt.",
+   "expected": "remove",
+   "toxicity": 0.9289340376853943
+  },
+  {
+   "id": "civil-33781",
+   "sourceRow": 33781,
+   "input": "Peter Stockland would you like a cemetery adjacent to your home? I bet you wouldn't you hypocrite piece of garbage! Who cares if it's Muslim, Jew or any other kind. You are just trying to sensationalize the Muslim part of the application. Whether it's the Muslims or the Indians your garbage is getting old. Go write greeting cards for hallmark as you are nothing but a clown.",
+   "expected": "remove",
+   "toxicity": 0.8484848737716675
+  },
+  {
+   "id": "civil-7",
+   "sourceRow": 7,
+   "input": "'Work together'? Dream on. The liberals are already busy creating the next scandal/crime to accuse President Trump of since they lose the policy debate every time. They are sniveling statist traitors and they should be ground into the dirt as they will never ever let up in their qwest to destroy this country by any means available. Of that you can be sure.",
+   "expected": "escalate",
+   "toxicity": 0.5
+  },
+  {
+   "id": "civil-11",
+   "sourceRow": 11,
+   "input": "Between racist Eastman and 'Slappy' Wilson the Wasilla delegation is an embarassment to the valley and the State. Both should resign. This is Trump's America, open racism in the Republican party and physical attacks on reporters.\nCue the usual racist adn commenters telling us how Eastman actually has a valid point with no evidence beyond an anecdote from the time they did a stint in the bush in 3...2...1....",
+   "expected": "escalate",
+   "toxicity": 0.5
+  },
+  {
+   "id": "civil-19",
+   "sourceRow": 19,
+   "input": "Well here we go again.  Let's continue to subsidize the cost of power, costs that are out of control due to decisions made by the Liberal government.  How nice to know the government has such contempt for the citizens of Ontario that it thinks we won't understand we are being bribed with out own tax dollars - tax dollars we will have to pay back with interest - to make re-election of these corrupt fools possible.  Not enough that the deficit remains large, we will now increase that deficit to buy votes.  This stinks, just like the power plant cancellation last election.  Ontario voters, wake up and throw these bums out!!",
+   "expected": "escalate",
+   "toxicity": 0.5
+  },
+  {
+   "id": "civil-84",
+   "sourceRow": 84,
+   "input": "Somebody needs to dig up the Peterson's back yard!  What other evil deeds did Monster Mom hide to protect her killer sons?  Lock her up too.",
+   "expected": "escalate",
+   "toxicity": 0.5571428537368774
+  },
+  {
+   "id": "civil-94",
+   "sourceRow": 94,
+   "input": "not a word about Germany criminalizing free speech on social media this week\n\nWOW\n\nState sponsored media and their thumbs down Globalist  lap dogs around here slopping up Merkel like she's a queen\n\nShe's destroyed Europe with immigration\nDon't believe go there",
+   "expected": "escalate",
+   "toxicity": 0.5
+  },
+  {
+   "id": "civil-1532",
+   "sourceRow": 1532,
+   "input": "And Women are still being oppressed, repressed, and distressed...even by an American president. Disgusting.",
+   "expected": "escalate",
+   "toxicity": 0.5135135054588318
+  },
+  {
+   "id": "civil-1533",
+   "sourceRow": 1533,
+   "input": "To make such a blanket statement that men would take advantage of a drunk woman who passes out, is rather sexist of you.    \n\nThat said, there are indeed some who will.   And that is why young women should not facilitate such crimes, by making it much, much easier for the perpetrator.",
+   "expected": "escalate",
+   "toxicity": 0.5
+  },
+  {
+   "id": "civil-1537",
+   "sourceRow": 1537,
+   "input": "Exact opposite of what if happening in the States.  Trudeau is the new corrupt 'leader' on the block garnering favours from the elite be it China or super rich Muslim Imams.  Sooner or later someone is going to have to come to grips with Trump eating our lunch and even the useful idiots will finally take notice.",
+   "expected": "escalate",
+   "toxicity": 0.5
+  },
+  {
+   "id": "civil-1554",
+   "sourceRow": 1554,
+   "input": "Clinton mocks Putin for “manspreading” at one meeting. - HRC while giving an interview to Colbert.\n\nI am outraged at how liberal women are treating men in politics.\n\n#outraged",
+   "expected": "escalate",
+   "toxicity": 0.4000000059604645
+  },
+  {
+   "id": "civil-1561",
+   "sourceRow": 1561,
+   "input": "Man. Someone should make killing people illegal just like drugs and these problems will go away.",
+   "expected": "escalate",
+   "toxicity": 0.4000000059604645
+  },
+  {
+   "id": "civil-3100",
+   "sourceRow": 3100,
+   "input": "White Media is using their Fake Propaganda To hide thier sins.",
+   "expected": "escalate",
+   "toxicity": 0.4000000059604645
+  },
+  {
+   "id": "civil-3105",
+   "sourceRow": 3105,
+   "input": "Speak for yourself about what it was like to \"be young and loving life.\" When I was in my late teens/early 20s, we didn't \"love life\" by getting drunk to the point of incapacitation. We didn't necessarily object to drinking, but if you drank and got drunk? That was a sure sign you were a \"loser.\" And when we did enjoy the great outdoors, we didn't leave our trash all over the place like this motley crew; like the good boy scouts and girl scouts we'd been, we picked up after ourselves.",
+   "expected": "escalate",
+   "toxicity": 0.5
+  },
+  {
+   "id": "civil-3125",
+   "sourceRow": 3125,
+   "input": "comedy, here the author condemns some women being referred to as bimbos' etc, but has no problem calling trump crazy. Not one of these people with pseudo anger at Trump remotely had a problem with Pelosi shamelessly exploiting a women's issue just to say republican's hate women.",
+   "expected": "escalate",
+   "toxicity": 0.5
+  },
+  {
+   "id": "civil-3126",
+   "sourceRow": 3126,
+   "input": "Words have meaning O77, and cause reaction in listeners, sometimes pain.  Should we run our lives like an unsupervised school playground, where a gang of bullies runs around calling names and beating up other kids, then taunt: what, you can't take it, sissy?  What purpose would that serve in your view?",
+   "expected": "escalate",
+   "toxicity": 0.4000000059604645
+  },
+  {
+   "id": "civil-3130",
+   "sourceRow": 3130,
+   "input": "Good, basic science. About darn time. If you \"identify\" in something your not, use the bathroom in your home. Other wise stay out!!",
+   "expected": "escalate",
+   "toxicity": 0.4000000059604645
+  },
+  {
+   "id": "civil-3139",
+   "sourceRow": 3139,
+   "input": "It doesn't occur to you that people realize the man was mentally disturbed? It's more likely that this is a media conspiracy?\n\nNo. I think most people know the man was mentally disturbed. But when you have the POTUS saying things like \"muslim ban\" this is the kind of behavior you can expect to see. It's a result bigoted ignorant policy. When the national narrative at the highest level is \"all muslims are potential terrorists\" you get events like this, a shooting at a mosque, the Indian man who was shot in a bar, or someone with a knife threatening your life when you're leaving a prayer service in Eugene. \n\nImagine now if you were a Muslim, even \"one of the good ones\". Now, because the POTUS has run on a policy of painting your religion as a threat you have to be worried about psychopaths lurking around every corner seeing you as a trigger to go on some violent rampage. That is why it's not ok, and why these people were heros. They tried to change the narrative and it cost them.",
+   "expected": "escalate",
+   "toxicity": 0.4000000059604645
+  },
+  {
+   "id": "civil-3145",
+   "sourceRow": 3145,
+   "input": "Also,  why would they want the police defending them?  I thought they wanted cops to \"fry like bacon\"?  Ah, now that they want someone to defend them, they cowardly run to the cops for protection with tails between legs. Lol typical leftist fascists.",
+   "expected": "escalate",
+   "toxicity": 0.515625
+  },
+  {
+   "id": "civil-4597",
+   "sourceRow": 4597,
+   "input": "Not much of a lying bigot are you?",
+   "expected": "escalate",
+   "toxicity": 0.5
+  },
+  {
+   "id": "civil-4618",
+   "sourceRow": 4618,
+   "input": "I have written monthly, here, that it is a useless tax.\n\nAnd Vancouver is proof it is useless, a foreign buyer tax on houses. The Vancouver tax started about half a year ago. And you can read in another article, in this paper, what the result has been on Vancouver houses: \"prices were up 3.6 per cent compared to the year before.\" \n\nHello? \n\nLook, houses in Vancouver cost dozens of times the average annual local income before the tax, and they still cost dozens of times the average annual local income after the tax. What this illustrates is that the foreigner tax ACCOMPLISHES NOTHING towards bringing house prices back to affordability for local workers. \n\nGovernment needs to get at the actual main cause of the problem, which is billions of dollars flooding in from overseas from new Canadians who bought citizenship through investor immigrant programs. THAT is what ACTUALLY skyrocketed Vancouver house prices out of affordability for local workers. Rich people with new Canadian passports.",
+   "expected": "escalate",
+   "toxicity": 0.4000000059604645
+  },
+  {
+   "id": "civil-4622",
+   "sourceRow": 4622,
+   "input": "why are tax payers paying for these billionaires` PR tour of entitlement??\n disgusting!",
+   "expected": "escalate",
+   "toxicity": 0.5492957830429077
+  },
+  {
+   "id": "civil-0",
+   "sourceRow": 0,
+   "input": "[ Integrity means that you pay your debts.]\n\nDoes this apply to President Trump too?",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-3",
+   "sourceRow": 3,
+   "input": "Paul: Thank you for your kind words.  I do, indeed, have strong beliefs and don't hide them.  They are based on both facts and values.  I think the question of \"bias\" and \"prejudice\" comes into play when we're discussing beliefs and attitudes based on values.  One of our poster friends,  for example, often comments that being \"intolerant\" of a bias, for example, is, in itself, a bias.  This is, IMO, where the concept of \"irratonal antipathy\" is important.  If I dislike neo-Nazis because of their views on race, my antipathy is based on fact (knowledge of their views) and values (my belief that condemning others because of their race/religion is WRONG).  Were I to, instead, dislike all Germans, that, IMO, would represent a bias...an irrational antipathy...since not all Germans condemn others because of their race/religion.  I discuss the \"bias\" question in another response to you....\n\nIt's an interesting topic and I'd enjoy discussing it w/you sometime.  Give me a call.  Gary Crum",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-4",
+   "sourceRow": 4,
+   "input": "Sorry you missed high school. Eisenhower sent troops to Vietnam after the French withdrew in 1954 and before that America was providing 50% of the cost of that war. WWI & WWII were won by Democrat Presidents and the last win a Republican had was 1865  but the did surrender in Korea and Vietnam and fail to win in desert Storm or these two wars.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-5",
+   "sourceRow": 5,
+   "input": "Let’s see if I understand this; Berkowitz announces a $14M surplus then he rails against Proposition 8 because it would constrain his ability to confiscate even more money from citizens. Berkowitz and his allies on the Assembly changed the tax cap language to facilitate confiscating greater amounts of citizen’s money. Now why would a mayor who professes fidelity with the taxpayers change the law to enable him to take more money from them? Probably because he plans to take more money from them.  Berkowitz said if Proposition 8 passes “it severely constrains our ability to give out property tax relief.”  So Berkowitz wants the ability to confiscate more of the citizen’s money to provide property relief. How about taking less of that money in the first place?  Let’s hope Proposition 8 passes.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-8",
+   "sourceRow": 8,
+   "input": "What would Jerry Prevo think about that story? Exactly what I think about his....",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-9",
+   "sourceRow": 9,
+   "input": "When wil the  indigenous  be accountable and take responsibility instead of blaming others ?  They have to be accountable and pay their own way or go it alone.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-10",
+   "sourceRow": 10,
+   "input": "the people against O'Leary are the same people against\n\nTrump\nBrexit\n\nnot a good track record so far\n2 down and 1 to go",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-12",
+   "sourceRow": 12,
+   "input": "Since whining is the lifeblood of online comment sites, the Pope's sign will find little support here. The self-pitying ones with their myriad complaints would have you believe that Canada is a dreadful place to live -- why they haven't left for their perfect foreign paradise is a mystery -- when by any relative standard it remains a refuge of stability in a chaotic world, its ongoing issues not likely to be solved by endless griping from anonymous online cranks.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-13",
+   "sourceRow": 13,
+   "input": "Sue blue jeans, get out more and learn about the world, please.  It is not just about you.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-14",
+   "sourceRow": 14,
+   "input": "This debate will never end.  However the real hypocrisy is MD's addressing a very minor issue such as weed, when alcohol creates more havoc than all the illicit drugs combined.  I see Microbreweries popping up everywhere, wine tastings and wine country tours with thousands of acres of land being used to cultivate grapes and not anyone ever complaining or debating the \"medical\" benefit from alcohol.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-15",
+   "sourceRow": 15,
+   "input": "IT IS DOA! As Collins announced her intentions to vote NO!",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-16",
+   "sourceRow": 16,
+   "input": "There are no words for these senseless acts.. God help us all if we do not learn that evil lurks even in the face of these teenagers. Such violence against their peers, should make everyone take pause. Be safe children, be safe. God says you can be the light of the world.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-17",
+   "sourceRow": 17,
+   "input": "What a terrific story.  In Japan they have people who are designated as 'living treasures' because they retain an expertise in sword making or ceramics.  This gentlemen should be considered a living treasure.  I am sure his canoes cost a lot of money given the work involved but it would be amazing to own one.  Thank you for telling us about this.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-18",
+   "sourceRow": 18,
+   "input": "As Donald himself said, \"Nobody knew that health care could be so complicated.\"\n\nSo take your time, get it right.  Don't rush it for political reasons.  And keep the promise that \"nobody  will lose coverage.\"  Can you do that?",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-20",
+   "sourceRow": 20,
+   "input": "Let me guess, you've never been an NFL player right? That's a rhetorical question BTW.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-23",
+   "sourceRow": 23,
+   "input": "Kitty Piercy did her best to make the almighty \"legacy\" (city) hall larger-than-life, at the city council work session on 7-11.  Move the slide time-bar to 11:18 minutes, on the webcast of that meeting:\n\nhttp://ceapps.eugene-or.gov/CEWebcast/WebCast/Play.aspx?mid=2996",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-24",
+   "sourceRow": 24,
+   "input": "Where is all that anger coming from?  A jaded relationship?",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-25",
+   "sourceRow": 25,
+   "input": "Exclude the more radical fringes on all sides and most of the discord goes away.\nAs I see it, \"corporations are people\" needs to be suspended and a new moderate party needs to be formed.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-27",
+   "sourceRow": 27,
+   "input": "Jjfoxy,\nWhy would 90% of articles print fake news to discredit Trump? Where are you getting your news from? Please Trump followers, where are you receiving news to compare with the majority? List them I will go read them. If you don't have truth, how do you know which is a lie?",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-29",
+   "sourceRow": 29,
+   "input": "How about introducing Vukovich to you, Bob1946?",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-30",
+   "sourceRow": 30,
+   "input": "The president makes himself an easy target.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-31",
+   "sourceRow": 31,
+   "input": "That is point I'm trying to make. We seem to be voting for the same dysfunction election after election. Your numbers seem to indicate that our residents, many of whom are at or below the median income, are voting, time after time, against their interests. All I was attempting to posit was that we should try thinking outside of the box to resolve some our problems and we can't do that by electing the same politicians over and over again. Thanks for your response.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-32",
+   "sourceRow": 32,
+   "input": "You can also find out the airline you thought you were going to fly with has subcontracted the entire flight to another carrier.  Norwegian Air did this to me last March so I got the privilege of flying with a Spanish company I'd never heard of....old plane, worn out seats, etc. I'd wouldn't't have booked this airline in the first place but wasn't warned of this or else would have rebooked.   So Norwegian Air you lost me for good.....",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-34",
+   "sourceRow": 34,
+   "input": "I believe we have reached any reasonable limit of decency in interfering with the private life of our politicians. Are we really so naive to believe that if the PM would have had the intention of doing a favor to an old friend a free helicopter ride was the thing that had him made it.?  It is pure witch hunt and then we are surprised why the best do not show up for public service. Would any of us have his/her own life thrown apart for a bunch of whiners never happy wanting everything without paying for anything. I am paying probably more taxes than I would like but I am happy and proud to live in a country that is protecting the weakest. This is insane we have completely lost a real perspective. This is not the measurement of the success of a politician, if he takes a free helicopter ride. But unfortunately it is much easier to blame someone else than look at yourself and be honest about our shortcomings. Who is without sin throw the first stone",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-37",
+   "sourceRow": 37,
+   "input": "Don’t get it do you. As the price of things go up especially eating out people will respond by not tipping, and layoffs will ensue. I will be dropping my tip rate to 0. After all you are being paid right, so I don’t need to. \n\nTimmy’s has already started to raise prices, and I understand from a number of franchises getting ready to cut staff. McDonald’s is moving up their automation timelines.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-38",
+   "sourceRow": 38,
+   "input": "I bet China would be happy to help Puerto Rico rebuild in exchange for a nice military base.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-39",
+   "sourceRow": 39,
+   "input": "“This was not an action that was taken lightly. The EPA doesn’t go around suing willy-nilly.” said Jane Ard-Smith, chair of the Pikes Peak chapter of the Sierra Club. Coming from a representative of the most sue happy non-profit in the U.S., this statement doesn't carry much credibility.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-41",
+   "sourceRow": 41,
+   "input": "The command to \"sin no more \" appears to indicate that the woman was guilty. I don't think the lesson has to do with evidence. It says we are not worthy enough to condemn others for many types of sins. \nI would assume this does not apply to criminal activity like murder or theft though.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-42",
+   "sourceRow": 42,
+   "input": "Eight years after the first high-quality publication that small particulate pollution causes brain damage, a finding that has been repeated many times now, our journalists still refuse to ever include this among the dangers of our local air pollution problem. I guess there aren't any science requirements for journalism majors.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-44",
+   "sourceRow": 44,
+   "input": "The headline does not correspond with the content in the article and specifically to what Coach Leavitt has to say on the matter.\n\nHeadline: Lamar Winston planning to make his first start on defense for Oregon Ducks at Wyoming\n\nArticle: Leavitt said he’s not sure if Winston will open the game against the Cowboys. “We have different personnel groups so I don’t know if he’ll start or not, it depends on who goes out there,” he said.\n\nFrom the article it appears the defense in an ongoing state of competition and we can expect, injuries aside, to see different people inserted as starters based on practice performances.\n\nGO DUCKS!",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-45",
+   "sourceRow": 45,
+   "input": "Mccallum stopped drinking in 2002.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-48",
+   "sourceRow": 48,
+   "input": "Everybody want's the piece of pie, Owners, Contractors, and the Senate.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-52",
+   "sourceRow": 52,
+   "input": "The only safe space needed would be for conservatives. It's only going to get worse.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-54",
+   "sourceRow": 54,
+   "input": "A better question is, \"In your last election, how much campaign donations did you accept from the U.S. Chamber of Crypto-Fascist, Crony Commerce? Or, can you support a Senate leader who refuses to eliminate the \"blue-slip\" provision?",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-56",
+   "sourceRow": 56,
+   "input": "adding to that there is a lot of American investment in Canadian companies so their benefiting on multiple fronts... our economies are heavility integrated.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-57",
+   "sourceRow": 57,
+   "input": "Niki-- In 9 years the UA budget increase from $229m to $370m. That's a 62% increase while inflation was 19%. The \"draconian cuts\" still leave UA with decade-long budget increases more than double inflation.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-58",
+   "sourceRow": 58,
+   "input": "He has a masters of science in Chemistry and the Charism of Bishop and Pope. He has plenty of theologians on his payroll and in his Order that he can rely on.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-59",
+   "sourceRow": 59,
+   "input": "Why not attach a poll to this article asking our preference?  Let the powers that be see what Canadians think and what they want.  Even with the chance for the prizes, I will still prefer to watch the full US broadcast with the commercials.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-61",
+   "sourceRow": 61,
+   "input": "All the folks you mention are dead. The Southern Strategy was real and deliberate. The only thing stopping you from Googling it up and reading about it is your intense desire to remain ignorant of facts you don't like. Reagan won every Southern state except Georgia in 1980. Jimmy Carter was Georgia's Favorite Son.\n\nThe important thing is that the \"Solid South\" is now solidly Republican. In spite of your meaningless citation of a dozen dead people, the South has changed little in political and social character, still being the center of black voter discouragement, disenfranchisement, and gerrymandering. Only a few states are \"solid\" Democratic states, by contrast; the \"flyover states\" are mostly firmly Republican, and the \"rust belt states\" are in contention. Southern voters and politician are the same as always except that now they call themselves \"Republican\". And without the South, Republicans could not win the presidency any more.",
+   "expected": "allow",
+   "toxicity": 0
+  },
+  {
+   "id": "civil-62",
+   "sourceRow": 62,
+   "input": "Thank you Mr. Bennett for representing me and my small business\n I'll continue to bending over and grabbing my ankles and paying my $497.00 A month with my $7,500.00 deductable.",
+   "expected": "allow",
+   "toxicity": 0
+  }
+ ]
+}
