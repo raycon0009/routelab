@@ -1,2 +1,16 @@
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-createRoot(document.getElementById('root')!).render(<p>Skeleton</p>);
+import { BrowserRouter } from 'react-router-dom';
+import { FirebaseProvider } from './lib/firebase';
+import { App } from './App';
+import './styles.css';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <BrowserRouter>
+      <FirebaseProvider>
+        <App />
+      </FirebaseProvider>
+    </BrowserRouter>
+  </StrictMode>,
+);

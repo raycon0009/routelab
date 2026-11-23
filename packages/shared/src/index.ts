@@ -1,1 +1,5 @@
-export const SHARED_VERSION = '0.1.0';
+export * from './config';
+export * from './firebaseConfig';
+export * from './routing';
+export * from './adapters';
+export * from './app';
