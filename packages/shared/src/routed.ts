@@ -17,7 +17,11 @@ export interface Breaker {
   deviceDisabled: boolean;
 }
 
-export type GenerateFn = (mode: SdkMode, input: string, signal: AbortSignal) => Promise<ModelResponse>;
+export type GenerateFn = (
+  mode: SdkMode,
+  input: string,
+  signal: AbortSignal,
+) => Promise<ModelResponse>;
 
 export function servedByOf(inferenceSource: string | undefined, fallback: 'on-device' | 'cloud') {
   if (inferenceSource === 'on_device') return 'on-device' as const;
@@ -44,13 +48,24 @@ export async function routedGenerate(
         ? 'routing says cloud only'
         : `input is ${input.length} chars, over the ${routing.maxDeviceChars}-char device limit`;
     const response = await callWithTimeout((s) => generate('ONLY_IN_CLOUD', input, s), 60_000);
-    return { response, servedBy: servedByOf(response.inferenceSource, 'cloud'), fellBackAfterTimeout: false, reason };
-  }
-  try {
-    const response = await callWithTimeout((s) => generate(routing.mode as SdkMode, input, s), routing.deviceTimeoutMs);
     return {
       response,
-      servedBy: servedByOf(response.inferenceSource, routing.mode === 'PREFER_IN_CLOUD' ? 'cloud' : 'on-device'),
+      servedBy: servedByOf(response.inferenceSource, 'cloud'),
+      fellBackAfterTimeout: false,
+      reason,
+    };
+  }
+  try {
+    const response = await callWithTimeout(
+      (s) => generate(routing.mode as SdkMode, input, s),
+      routing.deviceTimeoutMs,
+    );
+    return {
+      response,
+      servedBy: servedByOf(
+        response.inferenceSource,
+        routing.mode === 'PREFER_IN_CLOUD' ? 'cloud' : 'on-device',
+      ),
       fellBackAfterTimeout: false,
       reason: `mode ${routing.mode}`,
     };

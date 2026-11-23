@@ -2,7 +2,12 @@ import { describe, it, expect } from 'vitest';
 import { routedGenerate, type GenerateFn } from './routed';
 import { defaultRouting } from './routing';
 
-const r = { ...defaultRouting(), mode: 'PREFER_ON_DEVICE' as const, maxDeviceChars: 20, deviceTimeoutMs: 20 };
+const r = {
+  ...defaultRouting(),
+  mode: 'PREFER_ON_DEVICE' as const,
+  maxDeviceChars: 20,
+  deviceTimeoutMs: 20,
+};
 const resp = (src: string) => ({ text: 'x', inferenceSource: src });
 
 describe('routedGenerate', () => {
