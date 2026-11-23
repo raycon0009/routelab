@@ -10,3 +10,4 @@ service-account*.json
 *.tsbuildinfo
 coverage/
 .vite/
+tools/publisher/.env
