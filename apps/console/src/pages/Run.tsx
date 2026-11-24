@@ -79,6 +79,10 @@ export function RunPage() {
         grader: graderSpecFor(feature),
         routes,
         deviceTimeoutMs: 20_000,
+        // Free-tier Gemini allows 15 requests/min per model: start at most ~13/min and back off
+        // 4 s, 8 s, 16 s, 32 s on a 429 (the API asks for 12-14 s).
+        cloudMinIntervalMs: 4_500,
+        backoffBaseMs: 4_000,
         signal: ac.signal,
         onEvent: (e: RunEvent) => {
           if (e.type === 'result') {

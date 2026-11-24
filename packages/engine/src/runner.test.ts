@@ -365,3 +365,23 @@ describe('runEvaluation: cancel', () => {
     expect(out.results.every((r) => r.outcome === 'cancelled')).toBe(true);
   });
 });
+
+describe('cloud throttling', () => {
+  it('spaces cloud call starts by cloudMinIntervalMs', async () => {
+    const waits: number[] = [];
+    const out = await runEvaluation({
+      cases: cases(4),
+      adapter: fake(async () => ok()),
+      grader,
+      routes: ['cloud'],
+      cloudConcurrency: 4,
+      cloudMinIntervalMs: 1000,
+      sleep: async (ms) => void waits.push(ms),
+      cloudTimeoutMs: 30,
+    });
+    expect(out.results).toHaveLength(4);
+    // first call starts at once; the other three wait roughly 1 s, 2 s and 3 s
+    expect(waits.filter((w) => w > 900)).toHaveLength(3);
+    expect(Math.max(...waits)).toBeGreaterThan(2900);
+  });
+});

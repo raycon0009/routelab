@@ -18,6 +18,8 @@ export interface RunConfig {
   deviceTimeoutMs?: number;
   cloudTimeoutMs?: number;
   cloudConcurrency?: number;
+  /** Minimum gap between cloud call starts, to stay under a requests-per-minute quota (default 0). */
+  cloudMinIntervalMs?: number;
   /** Max tries for a rate-limited cloud call (default 5). */
   maxTries?: number;
   backoffBaseMs?: number;
@@ -236,10 +238,18 @@ export async function runEvaluation(cfg: RunConfig): Promise<RunOutput> {
 
   async function runCloud() {
     const concurrency = Math.max(1, cfg.cloudConcurrency ?? 4);
+    const minGap = cfg.cloudMinIntervalMs ?? 0;
+    let nextSlot = 0;
     let next = 0;
     const worker = async () => {
       while (next < cfg.cases.length) {
         const c = cfg.cases[next++]!;
+        if (minGap > 0) {
+          const now = Date.now();
+          const start = Math.max(now, nextSlot);
+          nextSlot = start + minGap;
+          if (start > now) await sleep(start - now);
+        }
         push(await cloudWithRetry(c));
       }
     };

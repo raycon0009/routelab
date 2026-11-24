@@ -202,6 +202,23 @@ const summaryCases = SPECS.map((s, i) => {
   };
 });
 
+// Extremes so the report can recommend a maxDeviceChars cap: three very short recipes
+// (< 200 chars) and three very long ones (> 3000 chars). Appended so earlier ids stay stable.
+function shortText(s: Spec): string {
+  return `${s.name}. You will need: ${s.ingredients.join(', ')}. Total time: ${s.minutes} minutes.`;
+}
+const extremeIdx = [4, 9, 16, 1, 12, 22];
+const extremeCases = extremeIdx.map((specIdx, k) => {
+  const s = SPECS[specIdx]!;
+  const input = k < 3 ? shortText(s) : recipeText(s, [36, 42, 50][k - 3]!);
+  return {
+    id: `summary-${summaryCases.length + k + 1}`,
+    input,
+    expected: [s.ingredients[0], s.ingredients[1], String(s.minutes)],
+  };
+});
+summaryCases.push(...extremeCases);
+
 const extractionCases = SPECS.slice(0, 20).map((s, i) => ({
   id: `extract-${i + 1}`,
   input: recipeText(s, i % 4),
