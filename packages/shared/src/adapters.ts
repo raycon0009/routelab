@@ -16,7 +16,11 @@ import {
   type ModelResponse,
   type Route,
 } from '@routelab/engine';
-import { CLOUD_MODEL, HEALTH_CHECK_TIMEOUT_MS } from './config';
+import { CLOUD_MODEL, DEVICE_WARMUP_TIMEOUT_MS, HEALTH_CHECK_TIMEOUT_MS } from './config';
+
+/** True once a device call has succeeded in this page, i.e. Nano is loaded in memory. */
+let deviceWarm = false;
+export const isDeviceWarm = () => deviceWarm;
 
 /**
  * Timeouts: `callWithTimeout` passes an AbortSignal AND races a timer. A timeout frees the page
@@ -119,6 +123,7 @@ export async function generate(
   timeout?: number,
 ): Promise<ModelResponse> {
   const { response } = await model.generateContent(prompt, { signal, timeout });
+  if (String(response.inferenceSource) === 'on_device') deviceWarm = true;
   return {
     text: response.text(),
     inferenceSource: response.inferenceSource,
@@ -166,23 +171,24 @@ export function createModelAdapter(
   };
 }
 
-/** Tiny device prompt with a 15 s limit. `unavailable` when Nano is not present at all. */
-export async function healthCheck(
-  ai: AI,
-  timeoutMs = HEALTH_CHECK_TIMEOUT_MS,
-): Promise<HealthStatus> {
+/**
+ * Tiny device prompt. `unavailable` when Nano is not present at all.
+ * The first check in a page doubles as the warm-up and gets DEVICE_WARMUP_TIMEOUT_MS, because a
+ * cold Nano needs ~24 s to load; later checks use the normal 15 s limit.
+ */
+export async function healthCheck(ai: AI, timeoutMs?: number): Promise<HealthStatus> {
   const availability = await getDeviceAvailability();
   if (availability !== 'available') return 'unavailable';
+  const limit = timeoutMs ?? (deviceWarm ? HEALTH_CHECK_TIMEOUT_MS : DEVICE_WARMUP_TIMEOUT_MS);
   try {
     const model = buildModel(ai, 'ONLY_ON_DEVICE', {
       systemPrompt: 'Follow the instruction.',
       userTemplate: '{{input}}',
     });
-    const r = await callWithTimeout(
-      (signal) => generate(model, 'Reply with OK', signal),
-      timeoutMs,
-    );
-    return r.text.trim().length > 0 ? 'healthy' : 'unhealthy';
+    const r = await callWithTimeout((signal) => generate(model, 'Reply with OK', signal), limit);
+    const ok = r.text.trim().length > 0;
+    if (ok) deviceWarm = true;
+    return ok ? 'healthy' : 'unhealthy';
   } catch {
     return 'unhealthy';
   }

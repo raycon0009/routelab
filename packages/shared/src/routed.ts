@@ -15,7 +15,14 @@ export interface RoutedResult {
 
 export interface Breaker {
   deviceDisabled: boolean;
+  /** Set after the first on-device answer. Until then the device gets the longer warm-up limit. */
+  deviceWarm?: boolean;
+  /** Limit for the first (cold) device call. Defaults to ROUTED_WARMUP_TIMEOUT_MS. */
+  warmupTimeoutMs?: number;
 }
+
+/** A cold Nano needs ~24 s to load (see DEVICE_WARMUP_TIMEOUT_MS), so the first call gets longer. */
+export const ROUTED_WARMUP_TIMEOUT_MS = 90_000;
 
 export type GenerateFn = (
   mode: SdkMode,
@@ -55,17 +62,22 @@ export async function routedGenerate(
       reason,
     };
   }
+  const deviceLimit = breaker.deviceWarm
+    ? routing.deviceTimeoutMs
+    : Math.max(routing.deviceTimeoutMs, breaker.warmupTimeoutMs ?? ROUTED_WARMUP_TIMEOUT_MS);
   try {
     const response = await callWithTimeout(
       (s) => generate(routing.mode as SdkMode, input, s),
-      routing.deviceTimeoutMs,
+      deviceLimit,
     );
+    const servedBy = servedByOf(
+      response.inferenceSource,
+      routing.mode === 'PREFER_IN_CLOUD' ? 'cloud' : 'on-device',
+    );
+    if (servedBy === 'on-device') breaker.deviceWarm = true;
     return {
       response,
-      servedBy: servedByOf(
-        response.inferenceSource,
-        routing.mode === 'PREFER_IN_CLOUD' ? 'cloud' : 'on-device',
-      ),
+      servedBy,
       fellBackAfterTimeout: false,
       reason: `mode ${routing.mode}`,
     };
@@ -77,7 +89,7 @@ export async function routedGenerate(
       response,
       servedBy: servedByOf(response.inferenceSource, 'cloud'),
       fellBackAfterTimeout: true,
-      reason: `device timed out after ${routing.deviceTimeoutMs} ms; retried in cloud and device is now off`,
+      reason: `device timed out after ${deviceLimit} ms; retried in cloud and device is now off`,
     };
   }
 }

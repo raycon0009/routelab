@@ -3,6 +3,9 @@ import {
   buildModel,
   callWithTimeout,
   chromeVersion,
+  DEFAULT_DEVICE_TIMEOUT_MS,
+  DEVICE_WARMUP_TIMEOUT_MS,
+  isDeviceWarm,
   downloadNano,
   generate,
   getDeviceAvailability,
@@ -51,6 +54,11 @@ export function Spike() {
 
   async function run(title: string, mode: 'ONLY_IN_CLOUD' | 'ONLY_ON_DEVICE', timeoutMs: number) {
     const t0 = performance.now();
+    // A cold Nano needs ~24 s to load; give the first real device call the warm-up limit.
+    if (mode === 'ONLY_ON_DEVICE' && timeoutMs >= DEFAULT_DEVICE_TIMEOUT_MS && !isDeviceWarm()) {
+      timeoutMs = DEVICE_WARMUP_TIMEOUT_MS;
+      title = `${title} (cold start, ${DEVICE_WARMUP_TIMEOUT_MS / 1000} s limit)`;
+    }
     const model = buildModel(ai, mode, FEATURE);
     const prompt = FEATURE.userTemplate.replace('{{input}}', input);
     try {

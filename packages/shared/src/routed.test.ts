@@ -26,8 +26,26 @@ describe('routedGenerate', () => {
     expect(out.servedBy).toBe('cloud');
     expect(out.reason).toContain('over the 20-char');
   });
+  it('first (cold) device call gets the warm-up limit, later calls the normal one', async () => {
+    const breaker = { deviceDisabled: false, warmupTimeoutMs: 200 };
+    // Cold: answers after 80 ms — longer than deviceTimeoutMs (20) but inside the warm-up limit.
+    const slow: GenerateFn = () =>
+      new Promise((res) => setTimeout(() => res(resp('on_device')), 80));
+    const first = await routedGenerate(r, 'short', breaker, slow);
+    expect(first.servedBy).toBe('on-device');
+    expect(first.fellBackAfterTimeout).toBe(false);
+    expect(breaker.deviceWarm).toBe(true);
+    // Warm: the same 80 ms now exceeds the 20 ms device limit -> cloud fallback.
+    const g: GenerateFn = (m) =>
+      m === 'ONLY_IN_CLOUD'
+        ? Promise.resolve(resp('in_cloud'))
+        : new Promise((res) => setTimeout(() => res(resp('on_device')), 80));
+    const second = await routedGenerate(r, 'short', breaker, g);
+    expect(second.fellBackAfterTimeout).toBe(true);
+    expect(second.reason).toContain('after 20 ms');
+  });
   it('device timeout retries in cloud and trips the breaker', async () => {
-    const breaker = { deviceDisabled: false };
+    const breaker = { deviceDisabled: false, deviceWarm: true };
     const modes: string[] = [];
     const g: GenerateFn = (m) => {
       modes.push(m);
