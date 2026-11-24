@@ -98,17 +98,14 @@ const firebaseConfig = {
 
 ## Status (update every session)
 
-| Day | Task                                 | State       | Notes                                                                                |
-| --- | ------------------------------------ | ----------- | ------------------------------------------------------------------------------------ |
-| 0   | Research, idea selection, kill tests | Done        | RouteLab chosen                                                                      |
-| 1   | Setup + spikes                       | In progress | Firebase console setup done 24 Nov (task 1 minus App Check). Spikes + scaffold next. |
-| 2   | Eval engine                          | Not started |                                                                                      |
-| 3   | Console part 1                       | Not started |                                                                                      |
-| 4   | Runs + reports                       | Not started |                                                                                      |
-| 5   | Apply + demo app                     | Not started |                                                                                      |
-| 6   | Polish                               | Not started |                                                                                      |
-| 7   | Evidence, docs, video draft          | Not started |                                                                                      |
-| 8   | Submit                               | Not started |                                                                                      |
+| Day | Task                                 | State       | Notes                                                                                                          |
+| --- | ------------------------------------ | ----------- | -------------------------------------------------------------------------------------------------------------- |
+| 0   | Research, idea selection, kill tests | Done        | RouteLab chosen                                                                                                |
+| 1   | Setup + spikes                       | Done        | Spikes, scaffold, App Check debug tokens done 24 Nov.                                                          |
+| 2–5 | Engine, console, runs, apply, demo   | Done (v1)   | Moderation → `ONLY_IN_CLOUD`, Recipe summary → `PREFER_ON_DEVICE`, both applied and read by the demo (24 Nov). |
+| 6   | Polish                               | Not started |                                                                                                                |
+| 7   | Evidence, docs, video draft          | Not started |                                                                                                                |
+| 8   | Submit                               | Not started |                                                                                                                |
 
 ## Decisions log (append, newest last)
 
@@ -132,3 +129,5 @@ const firebaseConfig = {
 - 24 Nov — `/validate` on the publisher needs the template ETag; firebase-admin templates expose `etag` as a prototype getter, so it must be copied explicitly (spread drops it). Fixed + tested.
 - 24 Nov — Cloud smoke test from a Node script failed with 401 "App Check token is invalid" (App Check is enforced for AI Logic): cloud path needs a registered debug token. Firestore rules are written, not deployed.
 - 24 Nov — Git identity for commits: user `raycon0009`, GitHub noreply email (set in repo-local config).
+- 24 Nov — **Recipe summary run** (run `iByvSB2DAbFDIY105WqA`, Recipe summary × Recipe summaries (synthetic), 25 cases, after a full Chrome restart). Device: 25/25 evaluated, **96% accuracy** (only `summary-13`, 1327 chars, wrong), p50 6.6 s / p95 7.9 s, 0 refusals/timeouts/schema fails; the warm-up passed. Cloud: 21/25 evaluated, 100%, p50 1.5 s; **4 cases rate-limited** (free tier `gemini-3.5-flash-lite` = 15 requests/min, 4 parallel calls plus retries exceeded it; not counted as wrong). By length: 200–499 chars 100%/100%, 500–1199 100%/100%, 1200–2999 device 93% (n=14) vs cloud 100% (n=10); the test set has no inputs under 200 or over 3000 chars. Verdict `PREFER_ON_DEVICE`, `maxDeviceChars` null. **Applied** (user-approved) to `routing_recipe_summary`, evidence run `iByvSB2DAbFDIY105WqA`. Demo (:5174): Refresh routing shows Recipe summary `PREFER_ON_DEVICE`, source `remote`; Summarise recipe on the dal recipe → badge `on-device`. Not tested: cloud fallback for a long recipe (needs `maxDeviceChars`). No Opus escalations this session.
+- 24 Nov — Fix: runner now records `input` on skipped, cancelled and rate-limited rows so the report's IN column is no longer empty. Open: lower `cloudConcurrency` or pace cloud calls to stay under the free-tier 15 RPM limit; add shorter/longer recipes to the summary set so `maxDeviceChars` can be exercised.
