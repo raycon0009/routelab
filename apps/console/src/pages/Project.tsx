@@ -37,10 +37,15 @@ export function ProjectPage() {
     setSeeding(true);
     setErr(null);
     try {
+      // Idempotent: update the feature / test set that came from the same sample, so loading
+      // again refreshes the built-in cases instead of adding duplicates.
       for (const s of SAMPLE_FEATURES) {
-        await saveFeature(db, uid, pid, s.feature);
+        const oldFeature = features.data?.find((f) => f.key === s.feature.key);
+        await saveFeature(db, uid, pid, { ...s.feature, id: oldFeature?.id });
         const b = BUILTIN_SETS.find((x) => x.id === s.builtinSetId)!;
+        const oldSet = sets.data?.find((t) => t.source === `builtin:${b.id}`);
         await saveTestSet(db, uid, pid, {
+          id: oldSet?.id,
           name: b.name,
           source: `builtin:${b.id}`,
           featureKey: s.feature.key,

@@ -116,9 +116,14 @@ export async function saveTestSet(
   db: Firestore,
   uid: string,
   pid: string,
-  t: Omit<TestSet, 'id'>,
+  t: Omit<TestSet, 'id'> & { id?: string },
 ): Promise<string> {
-  return (await addDoc(col(db, uid, 'projects', pid, 'testsets'), strip(t))).id;
+  const { id, ...data } = t;
+  if (id) {
+    await setDoc(ref(db, uid, 'projects', pid, 'testsets', id), strip(data));
+    return id;
+  }
+  return (await addDoc(col(db, uid, 'projects', pid, 'testsets'), strip(data))).id;
 }
 export async function getTestSet(
   db: Firestore,
